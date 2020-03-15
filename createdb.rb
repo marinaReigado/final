@@ -5,31 +5,35 @@ DB = Sequel.connect(connection_string)                                          
 #######################################################################################
 
 # Database schema - this should reflect your domain model
-DB.create_table! :events do
+DB.create_table! :restaurants do
   primary_key :id
-  String :title
-  String :description, text: true
-  String :date
-  String :location
+  String :restaurant_name
+  String :adress
 end
-DB.create_table! :rsvps do
+DB.create_table! :users do
   primary_key :id
-  foreign_key :event_id
-  Boolean :going
-  String :name
+  String :user_name
   String :email
+  String :password
+end
+DB.create_table! :reviews do
+  primary_key :id
+  foreign_key :restaurant_id
+  foreign_key :user_id
+  Boolean :vegan
+  Float :taste
+  Float :cleanliness
+  Float :waiting_time
+  Float :staff
+  String :price
   String :comments, text: true
 end
 
 # Insert initial (seed) data
-events_table = DB.from(:events)
+restaurants_table = DB.from(:restaurants)
 
-events_table.insert(title: "Bacon Burger Taco Fest", 
-                    description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
-                    date: "June 21",
-                    location: "Kellogg Global Hub")
+restaurants_table.insert(restaurant_name: "Cachoeira Tropical", 
+                    adress: "R. João Cachoeira, 263 - Itaim Bibi, São Paulo - SP, 04535-010, Brasil")
 
-events_table.insert(title: "Kaleapolooza", 
-                    description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
-                    date: "July 4",
-                    location: "Nowhere")
+restaurants_table.insert(restaurant_name: "Prime Dog", 
+                    adress: "Rua Vergueiro, 1960 - Vila Mariana, São Paulo - SP, 04104-000, Brasil")

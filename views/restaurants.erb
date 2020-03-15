@@ -1,0 +1,5 @@
+<h1>All Restaurants</h1>
+
+<% for restaurant in @restaurants %>
+    <p><a href="/restaurant/<%= restaurant[:id] %>"><%= restaurant[:restaurant_name] %></a></p>
+<% end %>
