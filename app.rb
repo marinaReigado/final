@@ -37,7 +37,15 @@ get "/restaurant/:id" do
     @waiting_time = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:waiting_time)
     @staff = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:staff)
     @price = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:price)
-    
 
     view "restaurant"
+end
+
+get "/restaurant/:id/reviews/new" do
+    puts "params: #{params}"
+    @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
+    pp @restaurant
+
+
+    view "new_review"
 end

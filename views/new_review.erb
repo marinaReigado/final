@@ -1,0 +1,64 @@
+<h2>
+
+<h1>Review for <%= @restaurant[:restaurant_name] %></h1>
+<p><%= @restaurant[:adress] %></p>
+</h2>
+
+
+<form action="/restaurants/<%= @restaurant[:restaurant_id] %>/review/create" method="post">
+  <div class="form-group">
+
+    <label>Besides vegetarian options, were there vegan options?</label>
+    <select class="form-control" name="vegan">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>    
+  
+    <label>How good was the food?</label>
+    <select class="form-control" name="taste">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    </select>    
+     
+    <label>How clean was the place?</label>
+    <select class="form-control" name="cleanliness">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    </select>    
+
+    <label>How satisfied were you with the waiting time?</label>
+    <select class="form-control" name="waiting_time">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    </select>    
+
+    <label>How friendly was the staff?</label>
+    <select class="form-control" name="staff">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    </select>    
+
+    <label>How much, in dolars, did you spend per person?</label>
+    <input type="integer" class="form-control" placeholder="Amount" name="price">
+
+        <label>Comments</label>
+        <textarea class="form-control" rows="3" name="comments"></textarea>
+    
+  <p>
+  </p>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

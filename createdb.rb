@@ -49,7 +49,7 @@ reviews_table.insert(restaurant_id:1,
                     waiting_time: 4,
                     staff: 3,
                     price: 20,
-                    comments: 'bb')
+                    comments: 'Very good!')
 
 reviews_table.insert(restaurant_id:1,
                     vegan: 1, 
@@ -58,7 +58,7 @@ reviews_table.insert(restaurant_id:1,
                     waiting_time: 3,
                     staff: 3,
                     price: 30,
-                    comments: 'bb')
+                    comments: 'Excelent!')
 
 #users_table.insert(id:1,
 #                   user_name: "Marina",
