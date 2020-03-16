@@ -71,7 +71,40 @@ end
 get "/reviews/:id/edit" do
     puts "params: #{params}"
 
-    @review = reviews_table.where(restaurant_id: params["restaurant_id"]).to_a[0]
+    @review = reviews_table.where(restaurant_id: params["id"]).to_a[0]
     @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
     view "edit_review"
+end
+
+post "/restaurants/:id/update" do
+    puts "params: #{params}"
+
+        @review = reviews_table.where(restaurant_id: params["id"]).to_a[0]
+        @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
+       
+        reviews_table.where(restaurant_id: params["id"]).update(
+            restaurant_id: @restaurant[:id],
+            #user_id: session["user_id"],
+            taste: params["taste"],
+            cleanliness: params["cleanliness"],
+            waiting_time: params["waiting_time"],
+            staff: params["staff"],
+            price: params["price"],
+            comments: params["comments"],
+            vegan: params["vegan"]
+        )
+
+        view "update_review"
+
+end
+
+get "/reviews/:id/destroy" do
+    puts "params: #{params}"
+
+   @review = reviews_table.where(restaurant_id: params["id"]).to_a[0]
+   @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
+   
+   reviews_table.where(id: params["id"]).delete
+
+    view "destroy_review"
 end

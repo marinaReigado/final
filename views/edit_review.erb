@@ -20,31 +20,31 @@
 
     <label>How good was the food?</label>
     <select class="form-control" name="taste">
-    <% if @review[:taste] %>
+    <% if @review[:taste] ==1 %>
         <option value=1 selected>1</option>
         <option value=2>2</option>
         <option value=3>3</option>
         <option value=4>4</option>
         <option value=5>5</option>
-    <% elsif @review[:taste] %>
+    <% elsif @review[:taste] ==2 %>
         <option value=1>1</option>
         <option value=2 selected>2</option>
         <option value=3>3</option>
         <option value=4>4</option>
         <option value=5>5</option>
-    <% elsif @review[:taste] %>
+    <% elsif @review[:taste] ==3 %>
         <option value=1>1</option>
         <option value=2>2</option>
         <option value=3 selected>3</option>
         <option value=4>4</option>
         <option value=5>5</option>
-     <% elsif @review[:taste] %>
+     <% elsif @review[:taste] ==4 %>
         <option value=1>1</option>
         <option value=2>2</option>
         <option value=3>3</option>
         <option value=4 selected>4</option>
         <option value=5>5</option>
-    <% elsif @review[:taste] %>
+    <% elsif @review[:taste] ==5 %>
         <option value=1>1</option>
         <option value=2>2</option>
         <option value=3>3</option>
@@ -52,6 +52,115 @@
         <option value=5 selected>5</option>
     <% end %>
         </select>  
+
+    <label>How clean was the place?</label>
+    <select class="form-control" name="cleanliness">
+    <% if @review[:cleanliness] ==1 %>
+        <option value=1 selected>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:cleanliness] ==2 %>
+        <option value=1>1</option>
+        <option value=2 selected>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:cleanliness] ==3 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3 selected>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+     <% elsif @review[:cleanliness] ==4 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4 selected>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:cleanliness] ==5 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5 selected>5</option>
+    <% end %>
+        </select>  
+
+    <label>How satisfied were you with the waiting time?</label>
+    <select class="form-control" name="waiting_time">
+    <% if @review[:"waiting_time"] ==1 %>
+        <option value=1 selected>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:"waiting_time"] ==2 %>
+        <option value=1>1</option>
+        <option value=2 selected>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:"waiting_time"] ==3 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3 selected>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+     <% elsif @review[:"waiting_time"] ==4 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4 selected>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:"waiting_time"] ==5 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5 selected>5</option>
+    <% end %>
+        </select>  
+
+    <label>How friendly was the staff?</label>
+    <select class="form-control" name="staff">
+    <% if @review[:"staff"] ==1 %>
+        <option value=1 selected>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:"staff"] ==2 %>
+        <option value=1>1</option>
+        <option value=2 selected>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:"staff"] ==3 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3 selected>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+     <% elsif @review[:"staff"] ==4 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4 selected>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:"staff"] ==5 %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5 selected>5</option>
+    <% end %>
+        </select>  
+        
+    <label>How much, in dolars, did you spend per person?</label>
+    <input type="integer" class="form-control" placeholder=<%= @review[:price] %> name="price">
+
   </div>
 
   <div class="form-group">
