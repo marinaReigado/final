@@ -16,13 +16,7 @@ after { puts; }                                                                 
 
 restaurants_table = DB.from(:restaurants)
 reviews_table = DB.from(:reviews)
-users_table = DB.from(:users)
 
-before do
-    @current_user = users_table.where(id: session["user_id"]).to_a[0]
-end
-
-# homepage and list of restaurants
 get "/" do
     puts "params: #{params}"
 
@@ -31,129 +25,19 @@ get "/" do
     view "restaurants"
 end
 
-# restaurant details
-get "/restaurants/:id" do
+get "/restaurant/:id" do
     puts "params: #{params}"
-
-    @users_table = users_table
+    
     @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
     pp @restaurant
-    @reviews = reviews_table.where(event_id: @restaurant[:id]).to_a
+
+    @reviews = reviews_table.where(restaurant_id: @restaurant[:id]).to_a
+    @taste = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:taste)
+    @cleanliness = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:cleanliness)
+    @waiting_time = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:waiting_time)
+    @staff = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:staff)
+    @price = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:price)
+    
+
     view "restaurant"
-end
-
-# display the rsvp form (aka "new")
-get "/events/:id/rsvps/new" do
-    puts "params: #{params}"
-
-    @event = events_table.where(id: params[:id]).to_a[0]
-    view "new_rsvp"
-end
-
-# receive the submitted rsvp form (aka "create")
-post "/events/:id/rsvps/create" do
-    puts "params: #{params}"
-
-    # first find the event that rsvp'ing for
-    @event = events_table.where(id: params[:id]).to_a[0]
-    # next we want to insert a row in the rsvps table with the rsvp form data
-    rsvps_table.insert(
-        event_id: @event[:id],
-        user_id: session["user_id"],
-        comments: params["comments"],
-        going: params["going"]
-    )
-    redirect "/events/#{@event[:id]}"
-    #view "create_rsvp"
-end
-
-get "/rsvps/:id/edit" do
-    puts "params: #{params}"
-
-    @rsvp = rsvps_table.where(id: params["id"]).to_a[0]
-    @event = events_table.where(id: @rsvp[:event_id]).to_a[0]
-    view "edit_rsvp"
-end
-
-post "/rsvps/:id/update" do
-    puts "params: #{params}"
-
-    @rsvp = rsvps_table.where(id: params["id"]).to_a[0] 
-    @event = events_table.where(id: @rsvp[:event_id]).to_a[0]
-    if @current_user && @current_user[:id] == @rsvp[:id]
-        rsvps_table.where(id: params["id"]).update(
-            going: params["going"],
-            comments: params["comments"]
-        )
-    else
-        view "error"
-    end
-    view "update_rsvp"
-end
-
-get "/rsvps/:id/destroy" do
-    puts "params: #{params}"
-
-    rsvp = rsvps_table.where(id: params["id"]).to_a[0]
-    @event = events_table.where(id: rsvp[:event_id]).to_a[0]
-
-    rsvps_table.where(id: params["id"]).delete
-
-    view "destroy_rsvp"
-end
-
-# display the signup form (aka "new")
-get "/users/new" do
-    view "new_user"
-end
-
-# receive the submitted signup form (aka "create")
-post "/users/create" do
-    puts "params: #{params}"
-
-    # if there is already a user with this email, skip!
-    existing_user = users_table.where(email: params["email"]).to_a[0]
-    if existing_user
-        view "error"
-    else
-        users_table.insert(
-            name: params["name"],
-            email: params["email"],
-            password: BCrypt::Password.create(params["password"])
-        )
-        view "create_user"
-    end
-end
-
-# display the login form (aka "new")
-get "/logins/new" do
-    view "new_login"
-end
-
-# receive the submitted login form (aka "create")
-post "/logins/create" do
-    puts "params: #{params}"
-
-    # step 1: user with the params["email"] ?
-    @user = users_table.where(email: params["email"]).to_a[0]
-    if @user
-        # step 2: if @user, does the encrypted password match?
-        if BCrypt::Password.new(@user[:password]) == params["password"]
-            # set encrypted cookie for logged in user
-            session["user_id"] = @user[:id]
-            view "create_login"
-        else
-            view "create_login_failed"
-        end
-    else
-        view "create_login_failed"
-    end
-end
-
-# logout user
-get "/logout" do
-    # remove encrypted cookie for logged out user
-    session["user_id"] = nil
-    redirect "/logins/new"
-    #view "logout"
 end

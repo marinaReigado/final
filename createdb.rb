@@ -25,15 +25,45 @@ DB.create_table! :reviews do
   Float :cleanliness
   Float :waiting_time
   Float :staff
-  String :price
+  Float :price
   String :comments, text: true
 end
 
 # Insert initial (seed) data
 restaurants_table = DB.from(:restaurants)
+reviews_table = DB.from(:reviews)
+#users_table = DB.from(:users)
 
-restaurants_table.insert(restaurant_name: "Cachoeira Tropical", 
+restaurants_table.insert(id: 1,
+                    restaurant_name: "Cachoeira Tropical", 
                     adress: "R. João Cachoeira, 263 - Itaim Bibi, São Paulo - SP, 04535-010, Brasil")
 
-restaurants_table.insert(restaurant_name: "Prime Dog", 
+restaurants_table.insert(id:2,
+                    restaurant_name: "Prime Dog", 
                     adress: "Rua Vergueiro, 1960 - Vila Mariana, São Paulo - SP, 04104-000, Brasil")
+
+reviews_table.insert(restaurant_id:1,
+                    vegan: 1, 
+                    taste: 5,
+                    cleanliness:4,
+                    waiting_time: 4,
+                    staff: 3,
+                    price: 20,
+                    comments: 'bb')
+
+reviews_table.insert(restaurant_id:1,
+                    vegan: 1, 
+                    taste: 4,
+                    cleanliness:5,
+                    waiting_time: 3,
+                    staff: 3,
+                    price: 30,
+                    comments: 'bb')
+
+#users_table.insert(id:1,
+#                   user_name: "Marina",
+#                   password: "Marina1")
+
+#users_table.insert(id:2,
+#                   user_name: "Aniram",
+#                   password: "Aniram1")
