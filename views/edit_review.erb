@@ -1,0 +1,63 @@
+<h2>
+
+<h1>Edit Review for <%= @restaurant[:restaurant_name] %></h1>
+<p><%= @restaurant[:adress] %></p>
+</h2>
+
+<form action="/restaurants/<%= @restaurant[:id] %>/update" method="post">
+  <div class="form-group">
+
+    <label>Besides vegetarian options, were there vegan options?</label>
+    <select class="form-control" name="vegan">
+    <% if @review[:vegan] %>
+      <option value="1" selected>Yes</option>
+      <option value="0">No</option>
+      <% else %>
+        <option value="1">Yes</option>
+        <option value="0" selected>No</option>
+      <% end %>
+    </select>
+
+    <label>How good was the food?</label>
+    <select class="form-control" name="taste">
+    <% if @review[:taste] %>
+        <option value=1 selected>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:taste] %>
+        <option value=1>1</option>
+        <option value=2 selected>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:taste] %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3 selected>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+     <% elsif @review[:taste] %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4 selected>4</option>
+        <option value=5>5</option>
+    <% elsif @review[:taste] %>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5 selected>5</option>
+    <% end %>
+        </select>  
+  </div>
+
+  <div class="form-group">
+    <label>Comments</label>
+    <textarea class="form-control" rows="3" name="comments"><%= @review[:comments] %></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

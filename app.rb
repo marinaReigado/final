@@ -67,3 +67,11 @@ post "/restaurants/:id/review/create" do
     )
     view "create_review"
 end
+
+get "/reviews/:id/edit" do
+    puts "params: #{params}"
+
+    @review = reviews_table.where(restaurant_id: params["restaurant_id"]).to_a[0]
+    @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
+    view "edit_review"
+end
