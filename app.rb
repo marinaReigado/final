@@ -32,11 +32,11 @@ get "/restaurant/:id" do
     pp @restaurant
 
     @reviews = reviews_table.where(restaurant_id: @restaurant[:id]).to_a
-    @taste = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:taste)
-    @cleanliness = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:cleanliness)
-    @waiting_time = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:waiting_time)
-    @staff = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:staff)
-    @price = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:price)
+    @taste = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:taste).round(2)
+    @cleanliness = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:cleanliness).round(2)
+    @waiting_time = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:waiting_time).round(2)
+    @staff = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:staff).round(2)
+    @price = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:price).round(2)
 
     view "restaurant"
 end
