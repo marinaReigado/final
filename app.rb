@@ -41,7 +41,7 @@ get "/restaurant/:id" do
     view "restaurant"
 end
 
-get "/restaurant/:id/reviews/new" do
+get "/restaurants/:id/review/new" do
     puts "params: #{params}"
     @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
     pp @restaurant
@@ -50,7 +50,7 @@ get "/restaurant/:id/reviews/new" do
     view "new_review"
 end
 
-get "/restaurants/:id/review/create" do
+post "/restaurants/:id/review/create" do
     puts "params: #{params}"
 
     @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
@@ -65,6 +65,5 @@ get "/restaurants/:id/review/create" do
         comments: params["comments"],
         vegan: params["vegan"]
     )
-    redirect "/restaurants/#{@restaurants[:id]}"
     view "create_review"
 end
