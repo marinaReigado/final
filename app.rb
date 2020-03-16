@@ -49,3 +49,22 @@ get "/restaurant/:id/reviews/new" do
 
     view "new_review"
 end
+
+get "/restaurants/:id/review/create" do
+    puts "params: #{params}"
+
+    @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
+    reviews_table.insert(
+        restaurant_id: @restaurant[:id],
+        #user_id: session["user_id"],
+        taste: params["taste"],
+        cleanliness: params["cleanliness"],
+        waiting_time: params["waiting_time"],
+        staff: params["staff"],
+        price: params["price"],
+        comments: params["comments"],
+        vegan: params["vegan"]
+    )
+    redirect "/restaurants/#{@restaurants[:id]}"
+    view "create_review"
+end
