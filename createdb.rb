@@ -44,6 +44,7 @@ restaurants_table.insert(id:2,
                     adress: "Rua Vergueiro, 1960 - Vila Mariana, São Paulo - SP, 04104-000, Brasil")
 
 reviews_table.insert(restaurant_id:1,
+                    user_id:1,
                     vegan: 1, 
                     taste: 5,
                     cleanliness:4,
@@ -53,6 +54,7 @@ reviews_table.insert(restaurant_id:1,
                     comments: 'Very good!')
 
 reviews_table.insert(restaurant_id:1,
+                    user_id:2,
                     vegan: 1, 
                     taste: 4,
                     cleanliness:5,
@@ -62,6 +64,7 @@ reviews_table.insert(restaurant_id:1,
                     comments: 'Excelent!')
 
 reviews_table.insert(restaurant_id:2,
+                    user_id:1,
                     vegan: 1, 
                     taste: 4,
                     cleanliness:3,
@@ -71,6 +74,7 @@ reviews_table.insert(restaurant_id:2,
                     comments: 'Perfect!')
 
 reviews_table.insert(restaurant_id:2,
+                    user_id:2,
                     vegan: 1, 
                     taste: 3,
                     cleanliness:5,
@@ -80,9 +84,11 @@ reviews_table.insert(restaurant_id:2,
                     comments: 'Cheap!')
 
 users_table.insert(id:1,
+                   email: "mareigado@gmail.com",
                    user_name: "Marina",
                    password: "Marina1")
 
 users_table.insert(id:2,
+                   email: "marina.reigado@kellogg.northwestern.edu",
                    user_name: "Aniram",
                    password: "Aniram1")

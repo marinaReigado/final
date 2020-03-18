@@ -44,7 +44,7 @@ get "/restaurant/:id" do
     @staff = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:staff).round(2)
     @price = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:price).round(2)
 
-    view "restaurant"
+    view "restaurant2"
 end
 
 get "/restaurants/:id/review/new" do
@@ -153,7 +153,7 @@ post "/logins/create" do
         # step 2: if @user, does the encrypted password match?
         if BCrypt::Password.new(@user[:password]) == params["password"]
             # set encrypted cookie for logged in user
-            session["id"] = @user[:id]
+            session["user_id"] = @user[:id]
             view "create_login"
         else
             view "create_login_failed"
