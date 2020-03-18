@@ -18,6 +18,10 @@ restaurants_table = DB.from(:restaurants)
 reviews_table = DB.from(:reviews)
 users_table = DB.from(:users)
 
+before do
+    @current_user = users_table.where(id: session["user_id"]).to_a[0]
+end
+
 get "/" do
     puts "params: #{params}"
 
@@ -29,6 +33,7 @@ end
 get "/restaurant/:id" do
     puts "params: #{params}"
     
+    @users_table = users_table
     @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
     pp @restaurant
 
@@ -44,6 +49,7 @@ end
 
 get "/restaurants/:id/review/new" do
     puts "params: #{params}"
+
     @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
     pp @restaurant
 
@@ -57,7 +63,7 @@ post "/restaurants/:id/review/create" do
     @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
     reviews_table.insert(
         restaurant_id: @restaurant[:id],
-        #user_id: session["user_id"],
+        user_id: session["user_id"],
         taste: params["taste"],
         cleanliness: params["cleanliness"],
         waiting_time: params["waiting_time"],
@@ -83,20 +89,21 @@ post "/restaurants/:id/update" do
         @review = reviews_table.where(restaurant_id: params["id"]).to_a[0]
         @restaurant = restaurants_table.where(id: params[:id]).to_a[0]
        
-        reviews_table.where(restaurant_id: params["id"]).update(
-            restaurant_id: @restaurant[:id],
-            #user_id: session["user_id"],
-            taste: params["taste"],
-            cleanliness: params["cleanliness"],
-            waiting_time: params["waiting_time"],
-            staff: params["staff"],
-            price: params["price"],
-            comments: params["comments"],
-            vegan: params["vegan"]
-        )
-
+        if @current_user && @current_user[:id] == @review[:id]
+            reviews_table.where(restaurant_id: params["id"]).update(
+                restaurant_id: @restaurant[:id],
+                taste: params["taste"],
+                cleanliness: params["cleanliness"],
+                waiting_time: params["waiting_time"],
+                staff: params["staff"],
+                price: params["price"],
+                comments: params["comments"],
+                vegan: params["vegan"]
+            )
+        else
+            view "error"
+        end
         view "update_review"
-
 end
 
 get "/reviews/:id/destroy" do

@@ -32,7 +32,8 @@ end
 # Insert initial (seed) data
 restaurants_table = DB.from(:restaurants)
 reviews_table = DB.from(:reviews)
-#users_table = DB.from(:users)
+users_table = DB.from(:users)
+
 
 restaurants_table.insert(id: 1,
                     restaurant_name: "Cachoeira Tropical", 
@@ -60,10 +61,28 @@ reviews_table.insert(restaurant_id:1,
                     price: 30,
                     comments: 'Excelent!')
 
-#users_table.insert(id:1,
-#                   user_name: "Marina",
-#                   password: "Marina1")
+reviews_table.insert(restaurant_id:2,
+                    vegan: 1, 
+                    taste: 4,
+                    cleanliness:3,
+                    waiting_time: 5,
+                    staff: 5,
+                    price: 10,
+                    comments: 'Perfect!')
 
-#users_table.insert(id:2,
-#                   user_name: "Aniram",
-#                   password: "Aniram1")
+reviews_table.insert(restaurant_id:2,
+                    vegan: 1, 
+                    taste: 3,
+                    cleanliness:5,
+                    waiting_time: 4,
+                    staff: 5,
+                    price: 20,
+                    comments: 'Cheap!')
+
+users_table.insert(id:1,
+                   user_name: "Marina",
+                   password: "Marina1")
+
+users_table.insert(id:2,
+                   user_name: "Aniram",
+                   password: "Aniram1")

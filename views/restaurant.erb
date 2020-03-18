@@ -12,18 +12,25 @@
         <h6>Staff: <%= @staff %> out of 5</h6>
         <h6>Average of <%= @price %> dolars per person</h6>
  
-       <a href="/restaurants/<%= @restaurant[:id] %>/review/new" class="btn btn-primary">Review now!</a>
+       
+        <a href="/restaurants/<%= @restaurant[:id] %>/review/new" class="btn btn-primary">Review now!</a>
  
        <a href="/reviews/<%= @restaurant[:id] %>/edit">(edit</a> | <a href="/reviews/<%= @restaurant[:id] %>/destroy">delete</a>)
                         
         <p></p>
        <h6>Comments:</h6>
         <% for review in @reviews %>
+        <h3>
+        <%= @users_table.where(id: 1).to_a[0][:user_name] %>
+        </h3>
         <p>
             <%= review[:comments] %>
         </p>
         <%end %>
 
+
+
+        
  
     </div>
 </div>
