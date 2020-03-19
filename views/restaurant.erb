@@ -1,7 +1,11 @@
 <div class="row">
     <div class="col-sm-9">
         <h1><%= @restaurant[:restaurant_name] %></h1>
-        <p><%= @restaurant[:adress] %></p>
+        <p>
+            <%= @restaurant[:adress] %>
+            <%= @restaurant[:adress_complement] %>
+        </p>
+            <p><%= @lat_long %></p>
 
         <h6>Taste: <%= @taste %> out of 5</h6>
         <h6>Cleanliness: <%= @cleanliness %> out of 5</h6>
@@ -33,5 +37,18 @@
                 <a href="/logins/new" class="btn btn-danger">Please sign in to Review</a>
             <% end %>
         </p>
+    </div>
+    
+    <div class="col-sm-9">
+     
+     
+     <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw
+          &q=-23.5890312, -46.6764139&zoom=12" allowfullscreen>
+      </iframe>
+
     </div>
 </div>

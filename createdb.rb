@@ -9,6 +9,7 @@ DB.create_table! :restaurants do
   primary_key :id
   String :restaurant_name
   String :adress
+  String :adress_complement
 end
 DB.create_table! :users do
   primary_key :id
@@ -36,11 +37,13 @@ users_table = DB.from(:users)
 
 restaurants_table.insert(id: 1,
                     restaurant_name: "Cachoeira Tropical", 
-                    adress: "R. João Cachoeira, 263 - Itaim Bibi, São Paulo - SP, 04535-010, Brasil")
+                    adress: "R. João Cachoeira, 263",
+                    adress_complement: "- Itaim Bibi, São Paulo - SP, 04535-010, Brasil")
 
 restaurants_table.insert(id:2,
                     restaurant_name: "Prime Dog", 
-                    adress: "Rua Vergueiro, 1960 - Vila Mariana, São Paulo - SP, 04104-000, Brasil")
+                    adress: "Rua Vergueiro, 1960",
+                    adress_complement: "- Vila Mariana, São Paulo - SP, 04104-000, Brasil")
 
 reviews_table.insert(restaurant_id:1,
                     user_id:1,
