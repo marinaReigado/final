@@ -44,7 +44,7 @@ get "/restaurant/:id" do
     @staff = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:staff).round(2)
     @price = reviews_table.where(restaurant_id: @restaurant[:id]).avg(:price).round(2)
 
-    view "restaurant2"
+    view "restaurant"
 end
 
 get "/restaurants/:id/review/new" do
