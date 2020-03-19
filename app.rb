@@ -48,7 +48,7 @@ get "/restaurant/:id" do
     location = Geocoder.search(@restaurant[:adress])
     @lat = location[0].latitude
     @long = location[0].longitude
-    @lat_long = [@lat, @long]
+    @lat_long = "#{@lat},#{@long}"
     
     view "restaurant"
 end
