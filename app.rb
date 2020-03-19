@@ -166,7 +166,7 @@ end
 # logout user
 get "/logout" do
     # remove encrypted cookie for logged out user
-    session["id"] = nil
+    session["user_id"] = nil
     redirect "/logins/new"
     #view "logout"
 end

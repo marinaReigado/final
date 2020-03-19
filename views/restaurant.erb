@@ -16,8 +16,10 @@
                         <small>
 
                         <!--only show this links if it is my RSVP -->
-                        <%if @current_user[:id] == review[:user_id]%>
-                            (<a href="/reviews/<%= review[:user_id] %>/edit">edit</a> | <a href="/reviews/<%= review[:user_id] %>/destroy">delete</a>)
+                        <%if @current_user != nil %>
+                            <%if @current_user[:id] == review[:user_id]%>
+                                (<a href="/reviews/<%= review[:user_id] %>/edit">edit</a> | <a href="/reviews/<%= review[:user_id] %>/destroy">delete</a>)
+                            <% end %>
                         <% end %>
                         </small>
                     </h5>

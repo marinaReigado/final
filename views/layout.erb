@@ -31,7 +31,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <% if @current_user %>
+                <% if @current_user != nil %>
                     <li class="navbar-text">
                         Logged in as <%= @current_user[:user_name] %>
                     </li>
