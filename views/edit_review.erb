@@ -7,17 +7,6 @@
 <form action="/restaurants/<%= @restaurant[:id] %>/update" method="post">
   <div class="form-group">
 
-    <label>Besides vegetarian options, were there vegan options?</label>
-    <select class="form-control" name="vegan">
-    <% if @review[:vegan] %>
-      <option value="1" selected>Yes</option>
-      <option value="0">No</option>
-      <% else %>
-        <option value="1">Yes</option>
-        <option value="0" selected>No</option>
-      <% end %>
-    </select>
-
     <label>How good was the food?</label>
     <select class="form-control" name="taste">
     <% if @review[:taste] ==1 %>
